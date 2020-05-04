@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DinicsAlgorithm
+namespace DinicsAlgorithm.Auxiliary
 {
     public class Edge
     {
-
         private int _flow;
         private int _currentUsage;
         

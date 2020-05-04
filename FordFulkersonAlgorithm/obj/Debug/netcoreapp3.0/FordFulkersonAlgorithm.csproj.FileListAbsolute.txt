@@ -1,0 +1,8 @@
+C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\FordFulkersonAlgorithm\bin\Debug\netcoreapp3.0\FordFulkersonAlgorithm.deps.json
+C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\FordFulkersonAlgorithm\bin\Debug\netcoreapp3.0\FordFulkersonAlgorithm.dll
+C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\FordFulkersonAlgorithm\bin\Debug\netcoreapp3.0\FordFulkersonAlgorithm.pdb
+C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\FordFulkersonAlgorithm\obj\Debug\netcoreapp3.0\FordFulkersonAlgorithm.csprojAssemblyReference.cache
+C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\FordFulkersonAlgorithm\obj\Debug\netcoreapp3.0\FordFulkersonAlgorithm.AssemblyInfoInputs.cache
+C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\FordFulkersonAlgorithm\obj\Debug\netcoreapp3.0\FordFulkersonAlgorithm.AssemblyInfo.cs
+C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\FordFulkersonAlgorithm\obj\Debug\netcoreapp3.0\FordFulkersonAlgorithm.dll
+C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\FordFulkersonAlgorithm\obj\Debug\netcoreapp3.0\FordFulkersonAlgorithm.pdb

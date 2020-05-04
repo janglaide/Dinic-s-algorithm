@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DinicsAlgorithm.Auxiliary;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,6 +9,8 @@ namespace DinicsAlgorithm
     {
         private int _N;
         private int _F;
+        private int _A;
+        private int _B;
         private Matrix _matrix;
         public Matrix FlowMatrix { get => _matrix; }
         private List<Node> _nodes;
@@ -17,6 +20,8 @@ namespace DinicsAlgorithm
             _N = _matrix.N;
             _nodes = FillNodes();
             _F = 0;
+            _A = _matrix.FromTo[0];
+            _B = _matrix.FromTo[1];
         }
         private List<Node> FillNodes()
         {
@@ -33,42 +38,44 @@ namespace DinicsAlgorithm
                 x.Closed = false;
             }
         }
-        public void Run(int start, int final)
+        public void Run()
         {
             while (true)
             {
-                var flag = BFS(start - 1);
+                var flag = BFS();
 
                 if (!flag)
                     break;
-                while (!_nodes[start - 1].Closed)
+                while (!_nodes[_A - 1].Closed)
                 {
                     var tmpPath = new List<int>();
                     var found = false;
-                    DFS(ref tmpPath, 0, final - 1, start - 1, ref found);
-                    if (tmpPath.Contains(final - 1))
-                        PathOutput(tmpPath, start);
+                    var f = 0;
+                    DFS(ref tmpPath, 0, ref found, ref f);
+                    if (tmpPath.Contains(_B - 1))
+                        PathOutput(tmpPath, _A, f);
                 }
                 RerollNodes();
             }
             Console.WriteLine("\nResult: Max F = " + _F.ToString());
             _matrix.ConsoleOutput();
         }
-        public void PathOutput(List<int> path, int start)
+        public void PathOutput(List<int> path, int start, int f)
         {
             var current = start;
             Console.Write(current.ToString());
             foreach (var x in path)
                 Console.Write(" --> " + (x + 1).ToString());
+            Console.Write("| f = " + f.ToString());
             Console.WriteLine();
         }
-        public void DFS(ref List<int> path, int current, int final, int start, ref bool found)
+        public void DFS(ref List<int> path, int current, ref bool found, ref int f)
         {
-            if(current == final)
+            if(current == _B - 1)
             {
-                var f = GetMinF(path, start);
+                f = GetMinF(path, _A - 1);
                 _F += f;
-                MatrixResolve(f, path, start);
+                MatrixResolve(f, path, _A - 1);
                 found = true;
                 return;
             }
@@ -78,7 +85,7 @@ namespace DinicsAlgorithm
                 foreach(var x in next)
                 {
                     path.Add(x);
-                    DFS(ref path, x, final, start, ref found);
+                    DFS(ref path, x, ref found, ref f);
                     if (found)
                         break;
                     
@@ -98,7 +105,7 @@ namespace DinicsAlgorithm
             var list = new List<int>();
             for (var i = 0; i < _N; i++)
             {
-                if ((!_nodes[i].Closed) && _matrix[current, i].Flow != 999 && _matrix[current, i].Difference() > 0 &&
+                if ((!_nodes[i].Closed) && _matrix[current, i].Flow != 0 && _matrix[current, i].Difference() > 0 &&
                     _nodes[i].Level > _nodes[current].Level)
                     list.Add(i);
             }
@@ -126,9 +133,9 @@ namespace DinicsAlgorithm
             }
             return min;
         }
-        public bool BFS(int start)
+        public bool BFS()
         {
-            var current = start;
+            var current = _A - 1;
             var queue = new Queue<int>();
             queue.Enqueue(current);
             _nodes[current].Level = 0;
@@ -153,7 +160,7 @@ namespace DinicsAlgorithm
             var list = new List<int>();
             for (var i = 0; i < _N; i++)
             {
-                if (_matrix[i, _N - 1].Flow != 999)
+                if (_matrix[i, _N - 1].Flow != 0)
                     list.Add(i);
             }
             foreach(var x in list)
@@ -191,7 +198,7 @@ namespace DinicsAlgorithm
             var list = new List<int>();
             for(var i = 0; i <_N; i++)
             {
-                if (_matrix[current, i].Flow != 999 && _matrix[current, i].Difference() > 0 && _nodes[i].Level == 999)
+                if (_matrix[current, i].Flow != 0 && _matrix[current, i].Difference() > 0 && _nodes[i].Level == 999)
                     list.Add(i);
             }
             return list;
