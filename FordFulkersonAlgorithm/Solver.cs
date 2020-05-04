@@ -9,8 +9,24 @@ namespace FordFulkersonAlgorithm
     {
         private int _vertexAmount;
         private Mark[] _marks;
-        public Flow FordFulkerson(int[,] cMatrix, int[,] eMatrix, int from, int to)
+        private int[,] _startMatrix;
+        public int[,] StartMatrix { get => _startMatrix; }
+        private int _N;
+        public Solver(int[,] matrix, int N)
         {
+            _N = N;
+            _startMatrix = new int[_N, _N];
+            for (int i = 0; i < _N; i++)
+            {
+                for (int j = 0; j < _N; j++)
+                {
+                    _startMatrix[i, j] = matrix[i, j];
+                }
+            }
+        }
+        public Flow FordFulkerson(int from, int to)
+        {
+            var cMatrix = CopyMatrix(_startMatrix);
             _vertexAmount = cMatrix.GetLength(0);
             int i, flowCost;
             int[,] flowVertexes = new int[_vertexAmount, _vertexAmount];
@@ -120,7 +136,7 @@ namespace FordFulkersonAlgorithm
             {
                 for (int k = 0; k < _vertexAmount; k++)
                 {
-                    if (eMatrix[j, k] > 0)
+                    if (fMatrix[j, k] != 0)
                     {
                         int a, b;
                         a = fMatrix[j, k] - cMatrix[j, k];

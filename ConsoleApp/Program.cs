@@ -9,29 +9,30 @@ namespace ConsoleApp
     {
         static void Main()
         {
-            //Ford-Fulkerson
-            IOStream stream = new IOStream();
-            Solver solve = new Solver();
+            IOConsole iOConsole = new IOConsole("input.txt");
+            iOConsole.ReadMatrix();
+            Console.WriteLine($"From: {iOConsole.From.ToString()}\n To: {iOConsole.To.ToString()}");
 
-            int from = 0, to = 0;
-            (int[,] cMartix, int[,] eMartix) = stream.FromFile(ref from, ref to);
-            Console.WriteLine($"from: {from}\n to: {to}");
-            Console.WriteLine("Ford-Fulkerson solved:");
-            //stream.ToConsole(cMartix);
-            stream.ConsoleOutput(stream.NullMatrix);
-            //Console.WriteLine("-");
-            //stream.ToConsole(eMartix);
-            Flow result = solve.FordFulkerson(cMartix, eMartix, from - 1, to - 1);
+            //Ford-Fulkerson
+            Console.WriteLine("Ford-Fulkerson solution:");
+
+            Solver solve = new Solver(iOConsole.CMatrix, iOConsole.N);
+            iOConsole.WriteMatrix(solve.StartMatrix, iOConsole.GetNullMatrix());
+            Flow result = solve.FordFulkerson(iOConsole.From - 1, iOConsole.To - 1);
+
             Console.WriteLine($"Result: Max F = {result.Cost}");
-            //stream.ToConsole(result.Vertexes);
-            stream.ConsoleOutput(result.Vertexes);
-            //Console.ReadKey();
+            iOConsole.WriteMatrix(solve.StartMatrix, result.Vertexes);
 
             //Dinics
-            Console.WriteLine("\nDinics solved:");
-            var dinics = new Dinics("input.txt");
-            dinics.FlowMatrix.ConsoleOutput();
+            Console.WriteLine("\nDinics solution:");
+
+            var dinics = new Dinics(iOConsole.From, iOConsole.To, iOConsole.N, iOConsole.CMatrix);
+            iOConsole.WriteMatrix(iOConsole.CMatrix, iOConsole.GetNullMatrix());
             dinics.Run();
+
+            Console.WriteLine("\nResult: Max F = " + dinics.F.ToString());
+            iOConsole.WriteMatrix(iOConsole.CMatrix, dinics.FlowMatrix.FlowToIntMatrix());
+
             Console.ReadKey();
         }
     }

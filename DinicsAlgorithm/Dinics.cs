@@ -3,25 +3,27 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+
 namespace DinicsAlgorithm
 {
     public class Dinics
     {
         private int _N;
         private int _F;
+        public int F { get => _F; }
         private int _A;
         private int _B;
         private Matrix _matrix;
         public Matrix FlowMatrix { get => _matrix; }
         private List<Node> _nodes;
-        public Dinics(string filename)
+        public Dinics(int A, int B, int N, int[,] matrix)
         {
-            _matrix = new Matrix(filename);
-            _N = _matrix.N;
+            _matrix = new Matrix(matrix, N);
+            _N = N;
             _nodes = FillNodes();
             _F = 0;
-            _A = _matrix.FromTo[0];
-            _B = _matrix.FromTo[1];
+            _A = A;
+            _B = B;
         }
         private List<Node> FillNodes()
         {
@@ -38,6 +40,7 @@ namespace DinicsAlgorithm
                 x.Closed = false;
             }
         }
+
         public void Run()
         {
             while (true)
@@ -57,8 +60,6 @@ namespace DinicsAlgorithm
                 }
                 RerollNodes();
             }
-            Console.WriteLine("\nResult: Max F = " + _F.ToString());
-            _matrix.ConsoleOutput();
         }
         public void PathOutput(List<int> path, int start, int f)
         {
