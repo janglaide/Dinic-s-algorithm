@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29509.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DinicsAlgorithm", "DinicsAlgorithm\DinicsAlgorithm.csproj", "{722B6127-E165-4AB1-ACD9-EC7B51A6C0C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{3CE1AF9E-E966-427D-84BA-53D4E711FDF0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{722B6127-E165-4AB1-ACD9-EC7B51A6C0C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{722B6127-E165-4AB1-ACD9-EC7B51A6C0C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{722B6127-E165-4AB1-ACD9-EC7B51A6C0C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{722B6127-E165-4AB1-ACD9-EC7B51A6C0C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CE1AF9E-E966-427D-84BA-53D4E711FDF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CE1AF9E-E966-427D-84BA-53D4E711FDF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CE1AF9E-E966-427D-84BA-53D4E711FDF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CE1AF9E-E966-427D-84BA-53D4E711FDF0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4B64BCCF-40C9-4DDE-935E-9F4C28A1952B}
+	EndGlobalSection
+EndGlobal
