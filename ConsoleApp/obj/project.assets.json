@@ -21,6 +21,16 @@
         "runtime": {
           "bin/placeholder/FordFulkersonAlgorithm.dll": {}
         }
+      },
+      "PathSearching/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.0",
+        "compile": {
+          "bin/placeholder/PathSearching.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PathSearching.dll": {}
+        }
       }
     }
   },
@@ -34,12 +44,18 @@
       "type": "project",
       "path": "../FordFulkersonAlgorithm/FordFulkersonAlgorithm.csproj",
       "msbuildProject": "../FordFulkersonAlgorithm/FordFulkersonAlgorithm.csproj"
+    },
+    "PathSearching/1.0.0": {
+      "type": "project",
+      "path": "../PathSearching/PathSearching.csproj",
+      "msbuildProject": "../PathSearching/PathSearching.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.0": [
       "DinicsAlgorithm >= 1.0.0",
-      "FordFulkersonAlgorithm >= 1.0.0"
+      "FordFulkersonAlgorithm >= 1.0.0",
+      "PathSearching >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -80,6 +96,9 @@
             },
             "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\FordFulkersonAlgorithm\\FordFulkersonAlgorithm.csproj": {
               "projectPath": "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\FordFulkersonAlgorithm\\FordFulkersonAlgorithm.csproj"
+            },
+            "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\PathSearching\\PathSearching.csproj": {
+              "projectPath": "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\PathSearching\\PathSearching.csproj"
             }
           }
         }

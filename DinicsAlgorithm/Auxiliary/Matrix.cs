@@ -8,9 +8,7 @@ namespace DinicsAlgorithm.Auxiliary
     public class Matrix
     {
         private Edge[,] _edges;
-
         private int _N;
-        public int N => _N;
         public Edge this[int i, int j]
         {
             get
@@ -44,7 +42,7 @@ namespace DinicsAlgorithm.Auxiliary
             }
             
         }
-        public void Fill()
+        private void Fill()
         {
             for (var i = 0; i < _N; i++)
                 for (var j = 0; j < _N; j++)
@@ -58,20 +56,6 @@ namespace DinicsAlgorithm.Auxiliary
                     m[i, j] = this[i, j].CurrentUsage;
             return m;
         }
-        public void ConsoleOutput()
-        {
-            for (var i = 0; i < _N; i++)
-            {
-                for (var j = 0; j < _N; j++)
-                {
-                    if(this[i, j].Flow == 0)
-                        Console.Write("(---) ");
-                    else
-                        Console.Write("(" + this[i, j].CurrentUsage.ToString() + "/" + this[i, j].Flow.ToString() + ") ");
-                }
-                Console.WriteLine();
-            }
-            Console.WriteLine();
-        }
+        
     }
 }

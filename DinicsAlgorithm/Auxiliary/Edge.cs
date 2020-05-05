@@ -8,7 +8,6 @@ namespace DinicsAlgorithm.Auxiliary
     {
         private int _flow;
         private int _currentUsage;
-        
         public int CurrentUsage { get => _currentUsage; set => _currentUsage = value; }
         public int Flow { get => _flow; set => _flow = value; }
 

@@ -14,3 +14,5 @@ C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\ConsoleApp\obj\Debug\netc
 C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\ConsoleApp\obj\Debug\netcoreapp3.0\ConsoleApp.pdb
 C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\ConsoleApp\bin\Debug\netcoreapp3.0\FordFulkersonAlgorithm.dll
 C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\ConsoleApp\bin\Debug\netcoreapp3.0\FordFulkersonAlgorithm.pdb
+C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\ConsoleApp\bin\Debug\netcoreapp3.0\PathSearching.dll
+C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\ConsoleApp\bin\Debug\netcoreapp3.0\PathSearching.pdb

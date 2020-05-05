@@ -154,7 +154,8 @@ namespace FordFulkersonAlgorithm
             }
             return new Flow(flowCost, flowVertexes);
         }
-        public int[,] CopyMatrix(int[,] matrix)
+        
+        private int[,] CopyMatrix(int[,] matrix)
         {
             var m = new int[matrix.GetLength(0), matrix.GetLength(1)];
             for (int i = 0; i < matrix.GetLength(0); i++)

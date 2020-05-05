@@ -62,6 +62,12 @@ namespace ConsoleApp
             }
             Console.WriteLine();
         }
+        public void WriteList(List<int> list, int cost)
+        {
+            foreach (var x in list)
+                Console.Write((x + 1).ToString() + " ");
+            Console.WriteLine("\n Cost = " + cost.ToString());
+        }
         public void Fill()
         {
             for (var i = 0; i < _N; i++)

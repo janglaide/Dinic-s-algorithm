@@ -13,6 +13,6 @@ namespace FordFulkersonAlgorithm.Auxiliary
             this.a = a;
             this.vertexFrom = vertexFrom;
         }
-        public override string ToString() => $"[{a}, {vertexFrom}]";
+        //public override string ToString() => $"[{a}, {vertexFrom}]";
     }
 }

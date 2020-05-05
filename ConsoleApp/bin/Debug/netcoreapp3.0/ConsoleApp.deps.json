@@ -9,7 +9,8 @@
       "ConsoleApp/1.0.0": {
         "dependencies": {
           "DinicsAlgorithm": "1.0.0",
-          "FordFulkersonAlgorithm": "1.0.0"
+          "FordFulkersonAlgorithm": "1.0.0",
+          "PathSearching": "1.0.0"
         },
         "runtime": {
           "ConsoleApp.dll": {}
@@ -23,6 +24,11 @@
       "FordFulkersonAlgorithm/1.0.0": {
         "runtime": {
           "FordFulkersonAlgorithm.dll": {}
+        }
+      },
+      "PathSearching/1.0.0": {
+        "runtime": {
+          "PathSearching.dll": {}
         }
       }
     }
@@ -39,6 +45,11 @@
       "sha512": ""
     },
     "FordFulkersonAlgorithm/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PathSearching/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

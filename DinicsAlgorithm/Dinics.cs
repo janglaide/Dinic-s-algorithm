@@ -61,7 +61,7 @@ namespace DinicsAlgorithm
                 RerollNodes();
             }
         }
-        public void PathOutput(List<int> path, int start, int f)
+        private void PathOutput(List<int> path, int start, int f)
         {
             var current = start;
             Console.Write(current.ToString());
@@ -70,7 +70,7 @@ namespace DinicsAlgorithm
             Console.Write("| f = " + f.ToString());
             Console.WriteLine();
         }
-        public void DFS(ref List<int> path, int current, ref bool found, ref int f)
+        private void DFS(ref List<int> path, int current, ref bool found, ref int f)
         {
             if(current == _B - 1)
             {
@@ -101,7 +101,7 @@ namespace DinicsAlgorithm
             }
             
         }
-        public List<int> GetNodesLevels(int current)
+        private List<int> GetNodesLevels(int current)
         {
             var list = new List<int>();
             for (var i = 0; i < _N; i++)
@@ -112,7 +112,7 @@ namespace DinicsAlgorithm
             }
             return list;
         }
-        public void MatrixResolve(int f, List<int> path, int start)
+        private void MatrixResolve(int f, List<int> path, int start)
         {
             var from = start;
             foreach (var x in path)
@@ -122,7 +122,7 @@ namespace DinicsAlgorithm
                 from = x;
             }
         }
-        public int GetMinF(List<int> path, int start)
+        private int GetMinF(List<int> path, int start)
         {
             var min = 999;
             var from = start;
@@ -134,7 +134,7 @@ namespace DinicsAlgorithm
             }
             return min;
         }
-        public bool BFS()
+        private bool BFS()
         {
             var current = _A - 1;
             var queue = new Queue<int>();
@@ -155,7 +155,7 @@ namespace DinicsAlgorithm
             else
                 return false;
         }
-        public void FinalNodeResolver()
+        private void FinalNodeResolver()
         {
             var max = 0;
             var list = new List<int>();
@@ -171,7 +171,7 @@ namespace DinicsAlgorithm
             }
             _nodes[_N - 1].Level = max + 1;
         }
-        public void SetLevel(int lvl, List<int> next)
+        private void SetLevel(int lvl, List<int> next)
         {
             foreach(var x in next)
             {
@@ -179,7 +179,7 @@ namespace DinicsAlgorithm
                     _nodes[x].Level = lvl + 1;
             }
         }
-        public int OpenedCount()
+        private int OpenedCount()
         {
             var counter = 0;
             foreach(var x in _nodes)
@@ -189,12 +189,12 @@ namespace DinicsAlgorithm
             }
             return counter;
         }
-        public void QueueAdd(List<int> list, ref Queue<int> queue)
+        private void QueueAdd(List<int> list, ref Queue<int> queue)
         {
             foreach (var x in list)
                 queue.Enqueue(x);
         }
-        public List<int> GetNodes(int current)
+        private List<int> GetNodes(int current)
         {
             var list = new List<int>();
             for(var i = 0; i <_N; i++)
