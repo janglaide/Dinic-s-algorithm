@@ -11,8 +11,15 @@ namespace ConsoleApp
     {
         static void Main()
         {
-            IOConsole iOConsole = new IOConsole("input.txt");
-            iOConsole.ReadMatrix();
+            //IOConsole iOConsole = new IOConsole("input.txt"); //file input
+            //iOConsole.ReadMatrix();
+
+            IOConsole iOConsole = new IOConsole(); //console input
+            iOConsole.ConsoleInputMatrix();
+            //iOConsole.RandomGenerate();
+
+            iOConsole.WriteMatrix(iOConsole.CMatrix, iOConsole.CMatrix); //output
+
             Console.WriteLine($"From: {iOConsole.From.ToString()}\n To: {iOConsole.To.ToString()}");
 
             //Ford-Fulkerson
