@@ -19,12 +19,12 @@ namespace ConsoleApp
         public IOConsole()
         {
             _filename = null;
-            //ConsoleInputMatrix();
+            _matrix = null;
         }
         public IOConsole(string filename)
         {
             _filename = filename;
-            //ReadMatrix();
+            _matrix = null;
         }
         public void ConsoleInputMatrix()
         {
@@ -50,13 +50,21 @@ namespace ConsoleApp
             {
                 for(var j = 0; j < n; j++)
                 {
-                    Console.Write("[{0}, {1}] = ", i + 1, j + 1);
-                    _matrix[i, j] = Convert.ToInt32(Console.ReadLine());
+                    if (i == _B - 1 || i >= j)
+                    {
+                        _matrix[i, j] = 0;
+                    }
+                    else
+                    {
+                        Console.Write("[{0}, {1}] = ", i + 1, j + 1);
+                        _matrix[i, j] = Convert.ToInt32(Console.ReadLine());
+                    }
                 }
             }
             Console.WriteLine("Created!");
-            var k = 'q';
+            char k;
             Console.WriteLine("Save data to the file? [y/n]");
+            Console.WriteLine();
             do
             {
                 k = Console.ReadKey().KeyChar;
@@ -112,10 +120,13 @@ namespace ConsoleApp
             {
                 for (var j = 0; j < n; j++)
                 {
-                    if (i == _B - 1)
+                    if (i == _B - 1 || i >= j)
+                    {
                         _matrix[i, j] = 0;
+                    }
                     else
                         _matrix[i, j] = rand.Next(0, c);
+                    _matrix[0, n - 1] = 0;
                 }
             }
             Console.WriteLine("Created!");
@@ -147,7 +158,17 @@ namespace ConsoleApp
             }
             streamReader.Close();
         }
-        public void WriteMatrix(int[,] A, int[,] B)
+        public void WriteMatrix(int[,] A)
+        {
+            for (var i = 0; i < _N; i++)
+            {
+                for (var j = 0; j < _N; j++)
+                     Console.Write(A[i, j].ToString() + " ");
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+        }
+        public void WriteFlowMatrix(int[,] A, int[,] B)
         {
             for (var i = 0; i < _N; i++)
             {
