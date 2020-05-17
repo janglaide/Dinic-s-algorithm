@@ -1,7 +1,6 @@
 ﻿using FordFulkersonAlgorithm.Auxiliary;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace FordFulkersonAlgorithm
 {
@@ -37,14 +36,14 @@ namespace FordFulkersonAlgorithm
 
             int[,] fMatrix = CopyMatrix(cMatrix);
 
-            i = 0;
+            i = from;
             _marks[i] = new Mark(int.MaxValue, -1);
             do
             {
                 List<int> S = new List<int>();
                 for (int j = 0; j < _vertexAmount; j++)
                 {
-                    if (/*eMatrix[i, j] > 0 &&*/ !deletedVertex.Contains(j) && cMatrix[i, j] > 0 && _marks[j] == null)
+                    if (!deletedVertex.Contains(j) && cMatrix[i, j] > 0 && _marks[j] == null)
                     {
                         S.Add(j);
                     }
@@ -79,11 +78,13 @@ namespace FordFulkersonAlgorithm
                         }
                         flowCost += min;
 
-                        var stack = new Stack<int>(); 
+                        var stack = new Stack<int>();
                         var k = to;
-                        while(k != -1)
+                        while (k != -1)
                         {
                             stack.Push(k);
+                            if (k == from)
+                                break;
                             k = _marks[k].vertexFrom;
                         }
                         var c = 0;
@@ -112,7 +113,8 @@ namespace FordFulkersonAlgorithm
                         {
                             _marks[j] = null;
                         }
-                        i = 0;
+                        deletedVertex = new List<int>();
+                        i = from;
                     }
                 }
                 else
@@ -154,7 +156,7 @@ namespace FordFulkersonAlgorithm
             }
             return new Flow(flowCost, flowVertexes);
         }
-        
+
         private int[,] CopyMatrix(int[,] matrix)
         {
             var m = new int[matrix.GetLength(0), matrix.GetLength(1)];

@@ -24,7 +24,7 @@ namespace PathSearching
                     d[j] = int.MinValue;
                 }
             }
-            while (u.Count < vertexAmount)
+            while (i != to)
             {
                 u.Add(i);
                 int nextVertex = -1;
@@ -39,33 +39,33 @@ namespace PathSearching
                 bool thereIsWay = false;
                 if (S.Count > 0)
                 {
-                    foreach (int v in S)
+                    for (int j = 0; j < S.Count; j++)
                     {
-                        if (d[v] < d[i] + cMatrix[i, v])
+                        if (d[S[j]] < d[i] + cMatrix[i, S[j]])
                         {
                             thereIsWay = true;
-                            d[v] = d[i] + cMatrix[i, v];
-                            p[v].Clear();
+                            d[S[j]] = d[i] + cMatrix[i, S[j]];
+                            p[S[j]].Clear();
                             foreach (int vertex in p[i])
                             {
-                                p[v].Add(vertex);
+                                p[S[j]].Add(vertex);
                             }
-                            p[v].Add(i);
-                            if (u.Contains(v))
+                            p[S[j]].Add(i);
+                            if (u.Contains(S[j]))
                             {
-                                u.Remove(v);
+                                u.Remove(S[j]);
                             }
                         }
                     }
                     if (thereIsWay)
                     {
                         int max = int.MinValue;
-                        foreach (int k in S)
+                        for (int j = 0; j < S.Count; j++)
                         {
-                            if (d[k] > max && !u.Contains(k))
+                            if (d[S[j]] > max && !u.Contains(S[j]))
                             {
-                                max = d[k];
-                                nextVertex = k;
+                                max = d[S[j]];
+                                nextVertex = S[j];
                             }
                         }
                     }
@@ -82,8 +82,15 @@ namespace PathSearching
                         }
                     }
                 }
+                if (nextVertex == -1)
+                {
+                    d[to] = 0;
+                    p[to] = null;
+                    break;
+                }
                 i = nextVertex;
             }
+            p[to].Add(to);
             return (d[to], p[to]);
         }
     }

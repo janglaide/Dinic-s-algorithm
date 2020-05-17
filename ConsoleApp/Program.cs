@@ -5,6 +5,7 @@ using PathSearching;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using ConsoleApp.Experiment;
 
 namespace ConsoleApp
 {
@@ -12,12 +13,12 @@ namespace ConsoleApp
     {
         static void Main()
         {
-            try
+            IOConsole console = new IOConsole();
+            while (true)
             {
-
-                IOConsole console = new IOConsole();
-                while (true)
+                try
                 {
+
                     Console.Clear();
                     if (console.CMatrix == null)
                         Console.WriteLine("*** There is no flow matrix to work with ***\n");
@@ -31,17 +32,17 @@ namespace ConsoleApp
                     Console.WriteLine("6. Dinics solution");
                     Console.WriteLine("7. Greedy search of path");
                     Console.WriteLine("8. DFS of path");
-                    Console.WriteLine("9. Exit");
-                    var key = Console.ReadKey().KeyChar;
+                    Console.WriteLine("9. Experimental research");
+                    Console.WriteLine("10. Exit");
+                    var key = Console.ReadLine();
                     Console.Clear();
                     switch (key)
                     {
-                        case '1':
+                        case "1":
                             if (console.CMatrix != null)
                             {
                                 Console.WriteLine("You have already got a matrix. " +
                                   "Do you really want to rewrite it? [y/n]");
-                                Console.WriteLine();
                                 char k;
                                 do
                                 {
@@ -51,7 +52,7 @@ namespace ConsoleApp
                                     break;
                             }
 
-                            Console.WriteLine("Enter the filename: ");
+                            Console.WriteLine("\nEnter the filename: ");
                             var filename = Console.ReadLine();
                             if (!File.Exists(filename))
                             {
@@ -64,7 +65,7 @@ namespace ConsoleApp
                             console.WriteMatrix(console.CMatrix);
                             Console.ReadKey();
                             break;
-                        case '2':
+                        case "2":
                             if (console.CMatrix != null)
                             {
                                 Console.WriteLine("You have already got a matrix. " +
@@ -83,7 +84,7 @@ namespace ConsoleApp
                             console.WriteMatrix(console.CMatrix);
                             Console.ReadKey();
                             break;
-                        case '3':
+                        case "3":
                             if (console.CMatrix != null)
                             {
                                 Console.WriteLine("You have already got a matrix. " +
@@ -98,18 +99,19 @@ namespace ConsoleApp
                             }
 
                             console = new IOConsole();
-                            console.RandomGenerate();
+                            int bound = console.RandomInput();
+                            console.RandomGenerate(bound);
                             console.WriteMatrix(console.CMatrix);
                             Console.ReadKey();
                             break;
-                        case '4':
+                        case "4":
                             if (console.CMatrix == null)
                                 Console.WriteLine("You haven`t got any matrix to use");
                             else
                                 console.WriteMatrix(console.CMatrix);
                             Console.ReadKey();
                             break;
-                        case '5':
+                        case "5":
                             if (console.CMatrix == null)
                             {
                                 Console.WriteLine("You haven`t got any matrix to use");
@@ -119,14 +121,14 @@ namespace ConsoleApp
 
                             Console.WriteLine("Ford-Fulkerson solution:");
                             Solver solve = new Solver(console.CMatrix, console.N);
-                            console.WriteFlowMatrix(solve.StartMatrix, console.GetNullMatrix());
+                            console.WriteFlowMatrixToConsole(solve.StartMatrix, console.GetNullMatrix());
                             Flow result = solve.FordFulkerson(console.From - 1, console.To - 1);
 
                             Console.WriteLine($"Result: Max F = {result.Cost}");
-                            console.WriteFlowMatrix(solve.StartMatrix, result.Vertexes);
+                            console.WriteFlowMatrixToConsole(solve.StartMatrix, result.Vertexes);
                             Console.ReadKey();
                             break;
-                        case '6':
+                        case "6":
                             if (console.CMatrix == null)
                             {
                                 Console.WriteLine("You haven`t got any matrix to use");
@@ -136,14 +138,14 @@ namespace ConsoleApp
 
                             Console.WriteLine("\nDinics solution:");
                             var dinics = new Dinics(console.From, console.To, console.N, console.CMatrix);
-                            console.WriteFlowMatrix(console.CMatrix, console.GetNullMatrix());
+                            console.WriteFlowMatrixToConsole(console.CMatrix, console.GetNullMatrix());
                             dinics.Run();
 
                             Console.WriteLine("\nResult: Max F = " + dinics.F.ToString());
-                            console.WriteFlowMatrix(console.CMatrix, dinics.FlowMatrix.FlowToIntMatrix());
+                            console.WriteFlowMatrixToConsole(console.CMatrix, dinics.FlowMatrix.FlowToIntMatrix());
                             Console.ReadKey();
                             break;
-                        case '7':
+                        case "7":
                             if (console.CMatrix == null)
                             {
                                 Console.WriteLine("You haven`t got any matrix to use");
@@ -154,10 +156,10 @@ namespace ConsoleApp
                             Console.WriteLine("\nGreedy solution:");
                             var greedy = new Greedy();
                             (int costGreedy, List<int> pathGreedy) = greedy.GreedyAlgorithm(console.CMatrix, console.From - 1, console.To - 1);
-                            console.WriteList(pathGreedy, costGreedy);
+                            console.WriteListToConsole(pathGreedy, costGreedy);
                             Console.ReadKey();
                             break;
-                        case '8':
+                        case "8":
                             if (console.CMatrix == null)
                             {
                                 Console.WriteLine("You haven`t got any matrix to use");
@@ -168,10 +170,15 @@ namespace ConsoleApp
                             Console.WriteLine("\nDFS solution:");
                             var dfs = new DFS(console.CMatrix, console.N, console.From - 1, console.To - 1);
                             (int costDFS, List<int> pathDFS) = dfs.Run();
-                            console.WriteList(pathDFS, costDFS);
+                            console.WriteListToConsole(pathDFS, costDFS);
                             Console.ReadKey();
                             break;
-                        case '9':
+                        case "9":
+                            console = new IOConsole();
+                            Research experimentor = new Research();
+                            experimentor.Menu();
+                            break;
+                        case "10":
                             Environment.Exit(0);
                             break;
                         default:
@@ -179,11 +186,11 @@ namespace ConsoleApp
                             Console.ReadKey();
                             break;
                     }
+                }catch(Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Console.ReadKey();
                 }
-            }catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-                Console.ReadKey();
             }
         }
     }
