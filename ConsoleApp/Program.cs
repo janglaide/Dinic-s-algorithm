@@ -1,11 +1,9 @@
-﻿using DinicsAlgorithm;
-using FordFulkersonAlgorithm;
-using FordFulkersonAlgorithm.Auxiliary;
-using PathSearching;
+﻿using PathSearching;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using ConsoleApp.Experiment;
+using Algorithms.Solvers;
 
 namespace ConsoleApp
 {
@@ -121,11 +119,11 @@ namespace ConsoleApp
 
                             Console.WriteLine("Ford-Fulkerson solution:");
                             Solver solve = new Solver(console.From - 1, console.To - 1, console.N, console.CMatrix);
-                            console.WriteFlowMatrixToConsole(solve.StartMatrix, console.GetNullMatrix());
-                            Flow result = solve.FordFulkerson();
+                            console.WriteFlowMatrixToConsole(console.CMatrix, console.GetNullMatrix());
+                            solve.FordFulkerson();
 
-                            Console.WriteLine($"Result: Max F = {result.Cost}");
-                            console.WriteFlowMatrixToConsole(solve.StartMatrix, result.Vertexes);
+                            Console.WriteLine($"Result: Max F = {solve.F}");
+                            console.WriteFlowMatrixToConsole(console.CMatrix, solve.FlowMatrix.FlowToIntMatrix());
                             Console.ReadKey();
                             break;
                         case "6":
@@ -137,7 +135,7 @@ namespace ConsoleApp
                             }
 
                             Console.WriteLine("\nDinics solution:");
-                            var dinics = new Dinics(console.From, console.To, console.N, console.CMatrix);
+                            Dinics dinics = new Dinics(console.From - 1, console.To - 1, console.N, console.CMatrix);
                             console.WriteFlowMatrixToConsole(console.CMatrix, console.GetNullMatrix());
                             dinics.Run();
 

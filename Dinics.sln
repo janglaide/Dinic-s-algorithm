@@ -3,11 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DinicsAlgorithm", "DinicsAlgorithm\DinicsAlgorithm.csproj", "{722B6127-E165-4AB1-ACD9-EC7B51A6C0C9}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{3CE1AF9E-E966-427D-84BA-53D4E711FDF0}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FordFulkersonAlgorithm", "FordFulkersonAlgorithm\FordFulkersonAlgorithm.csproj", "{44C5E563-216C-41BD-848F-14CEF1AFDA0D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PathSearching", "PathSearching\PathSearching.csproj", "{81CD5DFE-89D5-48B8-90A8-B6F070726C9F}"
 EndProject
@@ -19,18 +15,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{722B6127-E165-4AB1-ACD9-EC7B51A6C0C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{722B6127-E165-4AB1-ACD9-EC7B51A6C0C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{722B6127-E165-4AB1-ACD9-EC7B51A6C0C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{722B6127-E165-4AB1-ACD9-EC7B51A6C0C9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3CE1AF9E-E966-427D-84BA-53D4E711FDF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3CE1AF9E-E966-427D-84BA-53D4E711FDF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CE1AF9E-E966-427D-84BA-53D4E711FDF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CE1AF9E-E966-427D-84BA-53D4E711FDF0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{44C5E563-216C-41BD-848F-14CEF1AFDA0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{44C5E563-216C-41BD-848F-14CEF1AFDA0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{44C5E563-216C-41BD-848F-14CEF1AFDA0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{44C5E563-216C-41BD-848F-14CEF1AFDA0D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{81CD5DFE-89D5-48B8-90A8-B6F070726C9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{81CD5DFE-89D5-48B8-90A8-B6F070726C9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81CD5DFE-89D5-48B8-90A8-B6F070726C9F}.Release|Any CPU.ActiveCfg = Release|Any CPU

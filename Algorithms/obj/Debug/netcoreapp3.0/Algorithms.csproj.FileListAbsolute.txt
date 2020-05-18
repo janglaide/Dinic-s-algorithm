@@ -1,0 +1,8 @@
+C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\Algorithms\bin\Debug\netcoreapp3.0\Algorithms.deps.json
+C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\Algorithms\bin\Debug\netcoreapp3.0\Algorithms.dll
+C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\Algorithms\bin\Debug\netcoreapp3.0\Algorithms.pdb
+C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\Algorithms\obj\Debug\netcoreapp3.0\Algorithms.csprojAssemblyReference.cache
+C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\Algorithms\obj\Debug\netcoreapp3.0\Algorithms.AssemblyInfoInputs.cache
+C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\Algorithms\obj\Debug\netcoreapp3.0\Algorithms.AssemblyInfo.cs
+C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\Algorithms\obj\Debug\netcoreapp3.0\Algorithms.dll
+C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\Algorithms\obj\Debug\netcoreapp3.0\Algorithms.pdb

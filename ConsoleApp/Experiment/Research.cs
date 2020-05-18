@@ -1,12 +1,10 @@
-﻿using DinicsAlgorithm;
-using FordFulkersonAlgorithm;
-using FordFulkersonAlgorithm.Auxiliary;
-using PathSearching;
+﻿using PathSearching;
 using Experiment.Auxiliary;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using Algorithms.Solvers;
 
 namespace ConsoleApp.Experiment
 {
@@ -108,31 +106,31 @@ namespace ConsoleApp.Experiment
                 solve = new Solver(_console.From - 1, _console.To - 1, _console.N, _console.CMatrix);
 
                 Console.WriteLine($"№{i + 1}");
-                _console.WriteFlowMatrixToConsole(solve.StartMatrix, _console.GetNullMatrix());
+                _console.WriteFlowMatrixToConsole(_console.CMatrix, _console.GetNullMatrix());
                 Console.WriteLine("\n\nFord-Fulkerson solution:");
                 clock.Start();
-                Flow result = solve.FordFulkerson();
+                solve.FordFulkerson();
                 clock.Stop();
                 FordFulkersonCount.Add(clock.Elapsed.TotalMilliseconds);
 
-                Console.WriteLine($"\nResult: Max F = {result.Cost}; Time spent for solving: {clock.Elapsed}");
-                _console.WriteFlowMatrixToConsole(solve.StartMatrix, result.Vertexes);
+                Console.WriteLine($"\nResult: Max F = {solve.F}; Time spent for solving: {clock.Elapsed}");
+                _console.WriteFlowMatrixToConsole(_console.CMatrix, solve.FlowMatrix.FlowToIntMatrix());
                 Console.WriteLine();
 
                 if (file)
                 {
                     fileWriter.WriteLine($"№{i + 1}");
-                    _console.WriteFlowMatrixToFile(solve.StartMatrix, _console.GetNullMatrix(), fileWriter);
+                    _console.WriteFlowMatrixToFile(_console.CMatrix, _console.GetNullMatrix(), fileWriter);
                     fileWriter.WriteLine("\n\nFord-Fulkerson solution:");
-                    fileWriter.WriteLine($"\nResult: Max F = {result.Cost}; Time spent for solving: {clock.Elapsed}");
-                    _console.WriteFlowMatrixToFile(solve.StartMatrix, result.Vertexes, fileWriter);
+                    fileWriter.WriteLine($"\nResult: Max F = {solve.F}; Time spent for solving: {clock.Elapsed}");
+                    _console.WriteFlowMatrixToFile(_console.CMatrix, solve.FlowMatrix.FlowToIntMatrix(), fileWriter);
                     fileWriter.WriteLine();
                 }
                 clock.Reset();
 
                 Console.WriteLine("Dinics solution:");
 
-                var dinics = new Dinics(_console.From, _console.To, _console.N, _console.CMatrix);
+                var dinics = new Dinics(_console.From - 1, _console.To - 1, _console.N, _console.CMatrix);
                 clock.Start();
                 dinics.Run();
                 clock.Stop();

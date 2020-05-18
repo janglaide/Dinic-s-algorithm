@@ -8,7 +8,7 @@ namespace ConsoleApp
 {
     public class IOConsole
     {
-        private string _filename;
+        private readonly string _filename;
         private int _N;
         private int _A;
         private int _B;

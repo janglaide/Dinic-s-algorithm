@@ -6,8 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DinicsAlgorithm\DinicsAlgorithm.csproj" />
-    <ProjectReference Include="..\FordFulkersonAlgorithm\FordFulkersonAlgorithm.csproj" />
+    <ProjectReference Include="..\Algorithms\Algorithms.csproj" />
     <ProjectReference Include="..\PathSearching\PathSearching.csproj" />
   </ItemGroup>
 

@@ -6,7 +6,7 @@ namespace PathSearching
 {
     public class DFS : PathSearch   //used in Dinics algorithm
     {
-        private List<bool> _closed = new List<bool>();
+        private readonly List<bool> _closed = new List<bool>();
         public DFS(int[,] matrix, int n, int from, int to) : base(matrix, n, from, to)
         {
             for (var i = 0; i < _N; i++)
@@ -14,8 +14,7 @@ namespace PathSearching
         }
         public (int, List<int>) Run()
         {
-            var result = new List<int>();
-            result.Add(_from);
+            var result = new List<int> {_from};
             var found = false;
             var cost = 0;
             DFSAlgorithm(ref result, _from, ref found, ref cost, -1);

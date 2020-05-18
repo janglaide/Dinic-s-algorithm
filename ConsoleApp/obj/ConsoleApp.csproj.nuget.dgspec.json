@@ -4,6 +4,63 @@
     "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\ConsoleApp\\ConsoleApp.csproj": {}
   },
   "projects": {
+    "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\Algorithms\\Algorithms.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\Algorithms\\Algorithms.csproj",
+        "projectName": "Algorithms",
+        "projectPath": "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\Algorithms\\Algorithms.csproj",
+        "packagesPath": "C:\\Users\\Alisa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\Algorithms\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Alisa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\ConsoleApp\\ConsoleApp.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -32,130 +89,13 @@
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\DinicsAlgorithm\\DinicsAlgorithm.csproj": {
-                "projectPath": "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\DinicsAlgorithm\\DinicsAlgorithm.csproj"
-              },
-              "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\FordFulkersonAlgorithm\\FordFulkersonAlgorithm.csproj": {
-                "projectPath": "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\FordFulkersonAlgorithm\\FordFulkersonAlgorithm.csproj"
+              "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\Algorithms\\Algorithms.csproj": {
+                "projectPath": "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\Algorithms\\Algorithms.csproj"
               },
               "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\PathSearching\\PathSearching.csproj": {
                 "projectPath": "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\PathSearching\\PathSearching.csproj"
               }
             }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "netcoreapp3.0": {
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\DinicsAlgorithm\\DinicsAlgorithm.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\DinicsAlgorithm\\DinicsAlgorithm.csproj",
-        "projectName": "DinicsAlgorithm",
-        "projectPath": "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\DinicsAlgorithm\\DinicsAlgorithm.csproj",
-        "packagesPath": "C:\\Users\\Alisa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\DinicsAlgorithm\\obj\\",
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\Alisa\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "netcoreapp3.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "netcoreapp3.0": {
-            "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "netcoreapp3.0": {
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\FordFulkersonAlgorithm\\FordFulkersonAlgorithm.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\FordFulkersonAlgorithm\\FordFulkersonAlgorithm.csproj",
-        "projectName": "FordFulkersonAlgorithm",
-        "projectPath": "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\FordFulkersonAlgorithm\\FordFulkersonAlgorithm.csproj",
-        "packagesPath": "C:\\Users\\Alisa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\FordFulkersonAlgorithm\\obj\\",
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\Alisa\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "netcoreapp3.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "netcoreapp3.0": {
-            "projectReferences": {}
           }
         },
         "warningProperties": {

@@ -2,24 +2,14 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.0": {
-      "DinicsAlgorithm/1.0.0": {
+      "Algorithms/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.0",
         "compile": {
-          "bin/placeholder/DinicsAlgorithm.dll": {}
+          "bin/placeholder/Algorithms.dll": {}
         },
         "runtime": {
-          "bin/placeholder/DinicsAlgorithm.dll": {}
-        }
-      },
-      "FordFulkersonAlgorithm/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.0",
-        "compile": {
-          "bin/placeholder/FordFulkersonAlgorithm.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/FordFulkersonAlgorithm.dll": {}
+          "bin/placeholder/Algorithms.dll": {}
         }
       },
       "PathSearching/1.0.0": {
@@ -35,15 +25,10 @@
     }
   },
   "libraries": {
-    "DinicsAlgorithm/1.0.0": {
+    "Algorithms/1.0.0": {
       "type": "project",
-      "path": "../DinicsAlgorithm/DinicsAlgorithm.csproj",
-      "msbuildProject": "../DinicsAlgorithm/DinicsAlgorithm.csproj"
-    },
-    "FordFulkersonAlgorithm/1.0.0": {
-      "type": "project",
-      "path": "../FordFulkersonAlgorithm/FordFulkersonAlgorithm.csproj",
-      "msbuildProject": "../FordFulkersonAlgorithm/FordFulkersonAlgorithm.csproj"
+      "path": "../Algorithms/Algorithms.csproj",
+      "msbuildProject": "../Algorithms/Algorithms.csproj"
     },
     "PathSearching/1.0.0": {
       "type": "project",
@@ -53,8 +38,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.0": [
-      "DinicsAlgorithm >= 1.0.0",
-      "FordFulkersonAlgorithm >= 1.0.0",
+      "Algorithms >= 1.0.0",
       "PathSearching >= 1.0.0"
     ]
   },
@@ -91,11 +75,8 @@
       "frameworks": {
         "netcoreapp3.0": {
           "projectReferences": {
-            "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\DinicsAlgorithm\\DinicsAlgorithm.csproj": {
-              "projectPath": "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\DinicsAlgorithm\\DinicsAlgorithm.csproj"
-            },
-            "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\FordFulkersonAlgorithm\\FordFulkersonAlgorithm.csproj": {
-              "projectPath": "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\FordFulkersonAlgorithm\\FordFulkersonAlgorithm.csproj"
+            "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\Algorithms\\Algorithms.csproj": {
+              "projectPath": "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\Algorithms\\Algorithms.csproj"
             },
             "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\PathSearching\\PathSearching.csproj": {
               "projectPath": "C:\\Users\\Alisa\\Desktop\\lessons\\6 sem\\DO\\kursach\\Dinics\\PathSearching\\PathSearching.csproj"
