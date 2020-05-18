@@ -4,21 +4,13 @@ using System.Text;
 
 namespace PathSearching
 {
-    public class DFS //used in Dinics algorithm
+    public class DFS : PathSearch   //used in Dinics algorithm
     {
         private List<bool> _closed = new List<bool>();
-        private int _N;
-        private int[,] _matrix;
-        private int _from;
-        private int _to;
-        public DFS(int[,] matrix, int n, int from, int to)
+        public DFS(int[,] matrix, int n, int from, int to) : base(matrix, n, from, to)
         {
-            _N = n;
-            _matrix = CopyMatrix(matrix);
             for (var i = 0; i < _N; i++)
                 _closed.Add(false);
-            _from = from;
-            _to = to;
         }
         public (int, List<int>) Run()
         {
@@ -28,16 +20,6 @@ namespace PathSearching
             var cost = 0;
             DFSAlgorithm(ref result, _from, ref found, ref cost, -1);
             return (cost, result);
-        }
-        private int[,] CopyMatrix(int[,] matrix)
-        {
-            var m = new int[matrix.GetLength(0), matrix.GetLength(1)];
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                    m[i, j] = matrix[i, j];
-            }
-            return m;
         }
         private void DFSAlgorithm(ref List<int> path, int current, ref bool found, ref int cost, int previous)
         {

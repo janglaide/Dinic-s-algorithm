@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FordFulkersonAlgorithm.Auxiliary
 {
-    public class Mark
+    public class Mark // Ford-Fulkerson
     {
         public int a { get; }
         public int vertexFrom { get; }

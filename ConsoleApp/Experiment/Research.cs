@@ -105,13 +105,13 @@ namespace ConsoleApp.Experiment
             for (int i = 0; i < size; i++)
             {
                 _console.RandomGenerate(bound);
-                solve = new Solver(_console.CMatrix, _console.N);
+                solve = new Solver(_console.From - 1, _console.To - 1, _console.N, _console.CMatrix);
 
                 Console.WriteLine($"№{i + 1}");
                 _console.WriteFlowMatrixToConsole(solve.StartMatrix, _console.GetNullMatrix());
                 Console.WriteLine("\n\nFord-Fulkerson solution:");
                 clock.Start();
-                Flow result = solve.FordFulkerson(_console.From - 1, _console.To - 1);
+                Flow result = solve.FordFulkerson();
                 clock.Stop();
                 FordFulkersonCount.Add(clock.Elapsed.TotalMilliseconds);
 
@@ -151,9 +151,9 @@ namespace ConsoleApp.Experiment
                 clock.Reset();
 
 
-                var greedy = new Greedy();
+                var greedy = new Greedy(_console.CMatrix, _console.N, _console.From - 1, _console.To - 1);
                 clock.Start();
-                (int costGreedy, List<int> pathGreedy) = greedy.GreedyAlgorithm(_console.CMatrix, _console.From - 1, _console.To - 1);
+                (int costGreedy, List<int> pathGreedy) = greedy.GreedyAlgorithm();
                 clock.Stop();
                 GreedyCount.Add(clock.Elapsed.TotalMilliseconds);
 

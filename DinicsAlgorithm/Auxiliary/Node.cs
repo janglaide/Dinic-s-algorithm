@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DinicsAlgorithm.Auxiliary
 {
-    public class Node
+    public class Node // Dinics
     {
         private int _level;
         private bool _closed;

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FordFulkersonAlgorithm.Auxiliary
 {
-    public class Flow
+    public class Flow // Ford-Fulkerson
     {
         public int Cost { get; }
         public int[,] Vertexes { get; }

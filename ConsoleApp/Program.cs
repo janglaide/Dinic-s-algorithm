@@ -120,9 +120,9 @@ namespace ConsoleApp
                             }
 
                             Console.WriteLine("Ford-Fulkerson solution:");
-                            Solver solve = new Solver(console.CMatrix, console.N);
+                            Solver solve = new Solver(console.From - 1, console.To - 1, console.N, console.CMatrix);
                             console.WriteFlowMatrixToConsole(solve.StartMatrix, console.GetNullMatrix());
-                            Flow result = solve.FordFulkerson(console.From - 1, console.To - 1);
+                            Flow result = solve.FordFulkerson();
 
                             Console.WriteLine($"Result: Max F = {result.Cost}");
                             console.WriteFlowMatrixToConsole(solve.StartMatrix, result.Vertexes);
@@ -154,8 +154,8 @@ namespace ConsoleApp
                             }
 
                             Console.WriteLine("\nGreedy solution:");
-                            var greedy = new Greedy();
-                            (int costGreedy, List<int> pathGreedy) = greedy.GreedyAlgorithm(console.CMatrix, console.From - 1, console.To - 1);
+                            var greedy = new Greedy(console.CMatrix, console.N, console.From - 1, console.To - 1);
+                            (int costGreedy, List<int> pathGreedy) = greedy.GreedyAlgorithm();
                             console.WriteListToConsole(pathGreedy, costGreedy);
                             Console.ReadKey();
                             break;

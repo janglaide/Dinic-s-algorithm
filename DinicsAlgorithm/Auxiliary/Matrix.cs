@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DinicsAlgorithm.Auxiliary
 {
-    public class Matrix
+    public class Matrix // Dinics
     {
         private Edge[,] _edges;
         private int _N;

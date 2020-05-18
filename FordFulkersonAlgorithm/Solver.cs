@@ -6,44 +6,44 @@ namespace FordFulkersonAlgorithm
 {
     public class Solver
     {
-        private int _vertexAmount;
         private Mark[] _marks;
         private int[,] _startMatrix;
         public int[,] StartMatrix { get => _startMatrix; }
+        private int[,] _matrix;
         private int _N;
-        public Solver(int[,] matrix, int N)
+        private int _A;
+        private int _B;
+        private int _F;
+        public Solver(int A, int B, int N, int[,] matrix)
         {
             _N = N;
-            _startMatrix = new int[_N, _N];
-            for (int i = 0; i < _N; i++)
-            {
-                for (int j = 0; j < _N; j++)
-                {
-                    _startMatrix[i, j] = matrix[i, j];
-                }
-            }
+            _A = A;
+            _B = B;
+            _F = 0;
+            _matrix = CopyMatrix(matrix);
+            _startMatrix = CopyMatrix(matrix);
         }
-        public Flow FordFulkerson(int from, int to)
+        public Flow FordFulkerson()
         {
-            var cMatrix = CopyMatrix(_startMatrix);
-            _vertexAmount = cMatrix.GetLength(0);
-            int i, flowCost;
-            int[,] flowVertexes = new int[_vertexAmount, _vertexAmount];
+
+            int i;
+            //int flowCost;
+            int[,] flowVertexes = new int[_N, _N];
             List<int> deletedVertex = new List<int>();
-            _marks = new Mark[_vertexAmount];
+            _marks = new Mark[_N];
 
-            flowCost = 0;
+            //flowCost = 0;
 
-            int[,] fMatrix = CopyMatrix(cMatrix);
+            int[,] fMatrix = CopyMatrix(_matrix);
 
-            i = from;
+            i = _A;
             _marks[i] = new Mark(int.MaxValue, -1);
             do
             {
                 List<int> S = new List<int>();
-                for (int j = 0; j < _vertexAmount; j++)
+                for (int j = 0; j < _N; j++)
                 {
-                    if (!deletedVertex.Contains(j) && cMatrix[i, j] > 0 && _marks[j] == null)
+                    if (!deletedVertex.Contains(j) && _matrix[i, j] > 0 && _marks[j] == null)
                     {
                         S.Add(j);
                     }
@@ -55,18 +55,18 @@ namespace FordFulkersonAlgorithm
                     nextVertex = -1;
                     for (int j = 0; j < S.Count; j++)
                     {
-                        if (cMatrix[i, S[j]] > max)
+                        if (_matrix[i, S[j]] > max)
                         {
-                            max = cMatrix[i, S[j]];
+                            max = _matrix[i, S[j]];
                             nextVertex = S[j];
                         }
                     }
                     _marks[nextVertex] = new Mark(max, i);
                     i = nextVertex;
-                    if (i == to)
+                    if (i == _B)
                     {
                         int min = int.MaxValue;
-                        for (int j = 0; j < _vertexAmount; j++)
+                        for (int j = 0; j < _N; j++)
                         {
                             if (_marks[j] != null)
                             {
@@ -76,14 +76,14 @@ namespace FordFulkersonAlgorithm
                                 }
                             }
                         }
-                        flowCost += min;
+                        _F += min;
 
                         var stack = new Stack<int>();
-                        var k = to;
+                        var k = _B;
                         while (k != -1)
                         {
                             stack.Push(k);
-                            if (k == from)
+                            if (k == _A)
                                 break;
                             k = _marks[k].vertexFrom;
                         }
@@ -97,29 +97,29 @@ namespace FordFulkersonAlgorithm
                             c++;
                         }
 
-                        for (int j = 0; j < _vertexAmount; j++)
+                        for (int j = 0; j < _N; j++)
                         {
-                            if (_marks[j] != null && j != from)
+                            if (_marks[j] != null && j != _A)
                             {
-                                cMatrix[_marks[j].vertexFrom, j] -= min;
-                                cMatrix[j, _marks[j].vertexFrom] += min;
+                                _matrix[_marks[j].vertexFrom, j] -= min;
+                                _matrix[j, _marks[j].vertexFrom] += min;
                             }
                         }
 
                         Console.Write("| f = " + min.ToString());
                         Console.WriteLine();
 
-                        for (int j = 1; j < _vertexAmount; j++)
+                        for (int j = 1; j < _N; j++)
                         {
                             _marks[j] = null;
                         }
                         deletedVertex = new List<int>();
-                        i = from;
+                        i = _A;
                     }
                 }
                 else
                 {
-                    if (i != from)
+                    if (i != _A)
                     {
                         deletedVertex.Add(i);
                         i = _marks[i].vertexFrom;
@@ -134,15 +134,15 @@ namespace FordFulkersonAlgorithm
             } while (true);
 
 
-            for (int j = 0; j < _vertexAmount; j++)
+            for (int j = 0; j < _N; j++)
             {
-                for (int k = 0; k < _vertexAmount; k++)
+                for (int k = 0; k < _N; k++)
                 {
                     if (fMatrix[j, k] != 0)
                     {
                         int a, b;
-                        a = fMatrix[j, k] - cMatrix[j, k];
-                        b = fMatrix[k, j] - cMatrix[k, j];
+                        a = fMatrix[j, k] - _matrix[j, k];
+                        b = fMatrix[k, j] - _matrix[k, j];
                         if (a > 0)
                         {
                             flowVertexes[j, k] = a;
@@ -154,7 +154,7 @@ namespace FordFulkersonAlgorithm
                     }
                 }
             }
-            return new Flow(flowCost, flowVertexes);
+            return new Flow(_F, flowVertexes);
         }
 
         private int[,] CopyMatrix(int[,] matrix)

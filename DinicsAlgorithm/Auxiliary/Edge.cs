@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DinicsAlgorithm.Auxiliary
 {
-    public class Edge
+    public class Edge // Dinics
     {
         private int _flow;
         private int _currentUsage;
