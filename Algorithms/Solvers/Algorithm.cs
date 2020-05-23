@@ -22,12 +22,15 @@ namespace Algorithms.Solvers
             _F = 0;
             _matrix = new Matrix(matrix, _N);
         }
-        protected void PathOutput(IEnumerable<int> path, int start, int f)
+        protected void PathOutput(IEnumerable<int> path, int B, int f)
         {
-            var current = start;
-            Console.Write((current + 1).ToString());
             foreach (var x in path)
-                Console.Write(" --> " + (x + 1).ToString());
+            {
+                if (x == B)
+                    Console.Write((x + 1).ToString());
+                else
+                    Console.Write((x + 1).ToString() + " --> ");
+            }
             Console.Write("| f = " + f.ToString());
             Console.WriteLine();
         }

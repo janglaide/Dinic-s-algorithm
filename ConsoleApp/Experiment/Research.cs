@@ -206,6 +206,10 @@ namespace ConsoleApp.Experiment
             var finishSize = Convert.ToInt32(Console.ReadLine());
             if (startSize <= 0 || startSize > finishSize)
                 throw new Exception("Invalid value");
+            Console.WriteLine("Enter step:");
+            var step = Convert.ToInt32(Console.ReadLine());
+            if (step <= 0)
+                throw new Exception("Invalid value");
             Console.WriteLine("A max value of flow: ");
             bound = Convert.ToInt32(Console.ReadLine());
             if (bound <= 0)
@@ -216,7 +220,7 @@ namespace ConsoleApp.Experiment
                 throw new Exception("Not positive value");
 
 
-            for (int i = startSize; i <= finishSize; i++)
+            for (int i = startSize; i <= finishSize; i+= step)
             {
                 _console.ResearchInput(i, 1, i);
                 CounterReset();

@@ -63,12 +63,10 @@ namespace Algorithms.Solvers
                         while (k != -1)
                         {
                             stack.Push(k);
-                            if (k == _A)
-                                break;
                             k = _marks[k].vertexFrom;
                         }
 
-                        PathOutput(stack, _A, min);
+                        PathOutput(stack, _B, min);
 
                         for (int j = 0; j < _N; j++)
                         {

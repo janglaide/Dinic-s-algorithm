@@ -31,10 +31,11 @@ namespace Algorithms.Solvers
 
         public void Run()
         {
+            //var it = 0;
             while (true)
             {
                 var flag = BFS();
-
+                //it++;
                 if (!flag)
                     break;
                 while (!_nodes[_A].Closed)
@@ -44,10 +45,11 @@ namespace Algorithms.Solvers
                     var f = 0;
                     DFS(ref tmpPath, 0, ref found, ref f);
                     if (tmpPath.Contains(_B))
-                        PathOutput(tmpPath, _A, f);
+                        PathOutput(tmpPath, _B, f);
                 }
                 RerollNodes();
             }
+            //Console.WriteLine("iterations: " + it.ToString());
         }
         private void DFS(ref List<int> path, int current, ref bool found, ref int f)
         {
@@ -57,6 +59,7 @@ namespace Algorithms.Solvers
                 _F += f;
                 MatrixResolve(f, path, _A);
                 found = true;
+                path.Insert(0, _A);
                 return;
             }
             var next = GetNodesLevels(current);
