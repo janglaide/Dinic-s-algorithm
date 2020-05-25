@@ -184,7 +184,12 @@ namespace ConsoleApp
                             Console.ReadKey();
                             break;
                     }
-                }catch(Exception e)
+                }catch(StackOverflowException e)
+                {
+                    Console.WriteLine(e.Message);
+                    Console.ReadKey();
+                }
+                catch(Exception e)
                 {
                     Console.WriteLine(e.Message);
                     Console.ReadKey();
