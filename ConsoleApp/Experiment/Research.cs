@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using Algorithms.Solvers;
+using System.Drawing;
+using System.Linq;
 
 namespace ConsoleApp.Experiment
 {
@@ -16,10 +18,22 @@ namespace ConsoleApp.Experiment
         private List<double> DFSCount;
         private IOConsole _console;
         private int bound;
+        private const int X = 8600;
+        private const int Y = 5000;
+        private Pen ffPen = new Pen(Brushes.Red);
+        private Pen dPen = new Pen(Brushes.Blue);
+        private Pen scalePen = new Pen(Brushes.Gray);
+        private Font font = new Font("Arial", 90);
+        private Font scaleFont = new Font("Arial", 60);
+        private int stableY = Y - 400;
+        private int stableX = 300;
         public Research()
         {
             _console = new IOConsole();
             CounterReset();
+            ffPen.Width = 6.0F;
+            dPen.Width = 6.0F;
+            scalePen.Width = 3.0F;
         }
         public void CounterReset()
         {
@@ -100,6 +114,16 @@ namespace ConsoleApp.Experiment
             if (fileWriter != null)
                 file = true;
 
+
+            Bitmap bmp = new Bitmap(X, Y);
+            Graphics g = Graphics.FromImage(bmp);
+
+            g.Clear(Color.White);
+
+            var startX = stableX;
+            var startYD = 0;
+            var startYF = 0;
+            var counter = 0;
             for (int i = 0; i < size; i++)
             {
                 _console.RandomGenerate(bound);
@@ -112,6 +136,9 @@ namespace ConsoleApp.Experiment
                 solve.FordFulkerson();
                 clock.Stop();
                 FordFulkersonCount.Add(clock.Elapsed.TotalMilliseconds);
+
+                g.DrawLine(ffPen, startX, stableY - startYF, startX + ((X - 420) / size), stableY - Convert.ToInt32(clock.Elapsed.TotalMilliseconds * 100));
+                startYF = Convert.ToInt32(clock.Elapsed.TotalMilliseconds * 100);
 
                 Console.WriteLine($"\nResult: Max F = {solve.F}; Time spent for solving: {clock.Elapsed}");
                 _console.WriteFlowMatrixToConsole(_console.CMatrix, solve.FlowMatrix.FlowToIntMatrix());
@@ -136,6 +163,9 @@ namespace ConsoleApp.Experiment
                 clock.Stop();
                 DinicsCount.Add(clock.Elapsed.TotalMilliseconds);
 
+                g.DrawLine(dPen, startX, stableY - startYD, startX + ((X - 420) / size), stableY - Convert.ToInt32(clock.Elapsed.TotalMilliseconds * 100));
+                startYD = Convert.ToInt32(clock.Elapsed.TotalMilliseconds * 100);
+
                 Console.WriteLine($"\nResult: Max F = {dinics.F.ToString()} ; Time spent for solving: { clock.Elapsed}");
                 _console.WriteFlowMatrixToConsole(_console.CMatrix, dinics.FlowMatrix.FlowToIntMatrix());
                 Console.WriteLine();
@@ -147,6 +177,7 @@ namespace ConsoleApp.Experiment
                     fileWriter.WriteLine();
                 }
                 clock.Reset();
+
 
 
                 var greedy = new Greedy(_console.CMatrix, _console.N, _console.From - 1, _console.To - 1);
@@ -186,7 +217,41 @@ namespace ConsoleApp.Experiment
                 clock.Reset();
 
                 Console.WriteLine("\n\n");
+
+                var partsize = size / 5;
+                
+                if(i == 0)
+                {
+                    g.DrawString((i).ToString(), scaleFont, Brushes.Gray, startX, stableY);
+                    counter++;
+                }else if(i == counter * partsize || i == size - 1 && counter < 6)
+                {
+                    g.DrawString((i).ToString(), scaleFont, Brushes.Gray, startX + ((X - 420) / size), stableY);
+                    counter++;
+                }
+
+                startX += ((X - 420) / size);
             }
+            var maxFF = FordFulkersonCount.Average();
+            var maxD = DinicsCount.Average();
+            var maxHeight = maxFF >= maxD ? maxFF : maxD;
+
+            var partHeight = Convert.ToInt32((maxHeight * 3) / 5) * 100;
+            var tmpY = stableY;
+            for(var i = 1; i <= 5; i++)
+            {
+                g.DrawString((i * partHeight).ToString(), scaleFont, Brushes.Gray, 50, tmpY - partHeight);
+                tmpY -= partHeight;
+            }
+            g.DrawLine(scalePen, stableX, stableY, X - 120, stableY);
+            g.DrawLine(scalePen, stableX, stableY, stableX, stableY - Convert.ToInt32(maxHeight * 300));
+
+            g.DrawString("(task number)", scaleFont, Brushes.Gray, X - 550, stableY + 60);
+            g.DrawString("(msec\n* 100)", scaleFont, Brushes.Gray, 1, stableY - Convert.ToInt32(maxHeight * 300));
+
+            g.DrawString($"Ford-Fulkerson - Red, Dinics - Blue, N = {_console.N}, Research size = {size}", 
+                font, Brushes.Black, 50, Y - 180);
+            bmp.Save($"Research_1_{DateTime.Now.Day}{DateTime.Now.Month}{DateTime.Now.Year}_{DateTime.Now.Hour}{DateTime.Now.Minute}{DateTime.Now.Second}.jpg");
         }
 
         public void ResearchByTimePerSize(StreamWriter fileWriter)

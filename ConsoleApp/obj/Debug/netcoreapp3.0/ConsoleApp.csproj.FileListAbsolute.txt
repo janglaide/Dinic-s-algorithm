@@ -14,3 +14,8 @@ C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\ConsoleApp\bin\Debug\netc
 C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\ConsoleApp\bin\Debug\netcoreapp3.0\PathSearching.pdb
 C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\ConsoleApp\bin\Debug\netcoreapp3.0\Algorithms.dll
 C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\ConsoleApp\bin\Debug\netcoreapp3.0\Algorithms.pdb
+C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\ConsoleApp\bin\Debug\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\ConsoleApp\bin\Debug\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\ConsoleApp\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\ConsoleApp\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\Alisa\Desktop\lessons\6 sem\DO\kursach\Dinics\ConsoleApp\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
