@@ -10,6 +10,7 @@ namespace ConsoleApp.Experiment.Auxiliary
     public class ResearchGraph
     {
         private const int X = 8600;
+        public int GetX { get => X; }
         private const int Y = 5000;
         private Pen ffPen = new Pen(Brushes.Red);
         private Pen dPen = new Pen(Brushes.Blue);
@@ -18,6 +19,7 @@ namespace ConsoleApp.Experiment.Auxiliary
         private Font scaleFont = new Font("Arial", 60);
         private const int stableY = Y - 400;
         private const int stableX = 300;
+        public int GetStableX { get => stableX; }
         private Bitmap bmp = new Bitmap(X, Y);
         private Graphics g;
         public ResearchGraph()
@@ -54,10 +56,10 @@ namespace ConsoleApp.Experiment.Auxiliary
                 tmpY -= partHeight;
             }
         }
-        public void DrawYAverages(List<Average> time)
+        public void DrawYNumbers(List<Average> time)
         {
             var maxFF = 0.0;
-            foreach(var x in time)
+            foreach (var x in time)
             {
                 if (x.Time[0] > maxFF)
                     maxFF = x.Time[0];
@@ -97,7 +99,7 @@ namespace ConsoleApp.Experiment.Auxiliary
             g.DrawString($"Dinics\t Matrix size = {console.N}\t Research size = {size}",
                 font, Brushes.Black, 1250, Y - 180);
         }
-        public void DrawLegend2(int startsize, int finishsize, int step, int researchsize)
+        public void DrawLegend(int startsize, int finishsize, int step, int researchsize)
         {
             g.DrawRectangle(ffPen, 50, Y - 160, 90, 90);
             g.DrawString($"Ford-Fulkerson ", font, Brushes.Black, 150, Y - 180);

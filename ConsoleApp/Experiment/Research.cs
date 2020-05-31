@@ -19,15 +19,6 @@ namespace ConsoleApp.Experiment
         private List<double> DFSCount;
         private IOConsole _console;
         private int bound;
-        private const int X = 8600;
-        private const int Y = 5000;
-        private Pen ffPen = new Pen(Brushes.Red);
-        private Pen dPen = new Pen(Brushes.Blue);
-        private Pen scalePen = new Pen(Brushes.Gray);
-        private Font font = new Font("Arial", 90);
-        private Font scaleFont = new Font("Arial", 60);
-        private int stableY = Y - 400;
-        private int stableX = 300;
         public Research()
         {
             _console = new IOConsole();
@@ -114,7 +105,7 @@ namespace ConsoleApp.Experiment
 
             ResearchGraph researchGraph = new ResearchGraph();
 
-            var startX = stableX;
+            var startX = researchGraph.GetStableX;
             var startYD = 0;
             var startYF = 0;
             var counter = 0;
@@ -231,11 +222,11 @@ namespace ConsoleApp.Experiment
                     }
                     else if (i == counter * partsize || i == size - 1 && counter < 6)
                     {
-                        researchGraph.DrawXNumbers(i, startX + ((X - 420) / size));
+                        researchGraph.DrawXNumbers(i, startX + ((researchGraph.GetX - 420) / size));
                         counter++;
                     }
 
-                    startX += ((X - 420) / size);
+                    startX += ((researchGraph.GetX - 420) / size);
                 }            
             }
 
@@ -254,7 +245,7 @@ namespace ConsoleApp.Experiment
             List<Average> time = new List<Average>();
 
             ResearchGraph researchGraph = new ResearchGraph();
-            var startX = stableX;
+            var startX = researchGraph.GetStableX;
             var startYD = 0;
             var startYF = 0;
             var counter = 0;
@@ -309,15 +300,15 @@ namespace ConsoleApp.Experiment
                 var partsize = ((finishSize - startSize) / step) / divider;
                 if (i == (startSize + (counter * partsize * step)) || i == finishSize && counter < 6)
                 {
-                    researchGraph.DrawXNumbers(i, startX + ((X - 420) / (((finishSize - startSize) / step) + 1)));
+                    researchGraph.DrawXNumbers(i, startX + ((researchGraph.GetX - 420) / (((finishSize - startSize) / step) + 1)));
                     counter++;
                 }
 
-                startX += ((X - 420) / (((finishSize - startSize) / step) + 1));
+                startX += ((researchGraph.GetX - 420) / (((finishSize - startSize) / step) + 1));
             }
-            researchGraph.DrawYAverages(time);
+            researchGraph.DrawYNumbers(time);
             researchGraph.DrawAxes("size", "msec");
-            researchGraph.DrawLegend2(startSize, finishSize, step, researchSize);
+            researchGraph.DrawLegend(startSize, finishSize, step, researchSize);
 
             researchGraph.SaveJPG(2);
 
