@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Algorithms.Auxiliary
+﻿namespace Algorithms.Auxiliary
 {
     public class Mark // Ford-Fulkerson
     {

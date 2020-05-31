@@ -1,12 +1,9 @@
 ﻿using PathSearching;
-using Experiment.Auxiliary;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using Algorithms.Solvers;
-using System.Drawing;
-using System.Linq;
 using ConsoleApp.Experiment.Auxiliary;
 
 namespace ConsoleApp.Experiment

@@ -1,5 +1,4 @@
 ﻿using Algorithms.Auxiliary;
-using System;
 using System.Collections.Generic;
 
 namespace Algorithms.Solvers

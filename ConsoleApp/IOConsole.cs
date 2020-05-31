@@ -1,4 +1,4 @@
-﻿using Experiment.Auxiliary;
+﻿using ConsoleApp.Experiment.Auxiliary;
 using System;
 using System.Collections.Generic;
 using System.IO;
