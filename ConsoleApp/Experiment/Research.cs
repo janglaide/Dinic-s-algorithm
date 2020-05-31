@@ -7,6 +7,7 @@ using System.IO;
 using Algorithms.Solvers;
 using System.Drawing;
 using System.Linq;
+using ConsoleApp.Experiment.Auxiliary;
 
 namespace ConsoleApp.Experiment
 {
@@ -31,9 +32,6 @@ namespace ConsoleApp.Experiment
         {
             _console = new IOConsole();
             CounterReset();
-            ffPen.Width = 6.0F;
-            dPen.Width = 6.0F;
-            scalePen.Width = 3.0F;
         }
         public void CounterReset()
         {
@@ -71,7 +69,7 @@ namespace ConsoleApp.Experiment
                         Console.WriteLine("Enter research size:");
                         int.TryParse(Console.ReadLine(), out int size);
                         CounterReset();
-                        ResearchForSize(fileWriter, size);
+                        ResearchForSize(fileWriter, size, true);
                         Compare(fileWriter);
                         if (fileWriter != null)
                         {
@@ -105,7 +103,7 @@ namespace ConsoleApp.Experiment
                 }
             }
         }
-        public void ResearchForSize(StreamWriter fileWriter, int size)
+        public void ResearchForSize(StreamWriter fileWriter, int size, bool flag)
         {
             Solver solve;
             Stopwatch clock = new Stopwatch();
@@ -114,16 +112,13 @@ namespace ConsoleApp.Experiment
             if (fileWriter != null)
                 file = true;
 
-
-            Bitmap bmp = new Bitmap(X, Y);
-            Graphics g = Graphics.FromImage(bmp);
-
-            g.Clear(Color.White);
+            ResearchGraph researchGraph = new ResearchGraph();
 
             var startX = stableX;
             var startYD = 0;
             var startYF = 0;
             var counter = 0;
+
             for (int i = 0; i < size; i++)
             {
                 _console.RandomGenerate(bound);
@@ -137,8 +132,12 @@ namespace ConsoleApp.Experiment
                 clock.Stop();
                 FordFulkersonCount.Add(clock.Elapsed.TotalMilliseconds);
 
-                g.DrawLine(ffPen, startX, stableY - startYF, startX + ((X - 420) / size), stableY - Convert.ToInt32(clock.Elapsed.TotalMilliseconds * 100));
-                startYF = Convert.ToInt32(clock.Elapsed.TotalMilliseconds * 100);
+                if (flag)
+                {
+                    researchGraph.DrawGraphLine(true, startX, startYF, size, clock.Elapsed.TotalMilliseconds);
+                    startYF = Convert.ToInt32(clock.Elapsed.TotalMilliseconds * 100);
+                }
+                
 
                 Console.WriteLine($"\nResult: Max F = {solve.F}; Time spent for solving: {clock.Elapsed}");
                 _console.WriteFlowMatrixToConsole(_console.CMatrix, solve.FlowMatrix.FlowToIntMatrix());
@@ -163,8 +162,11 @@ namespace ConsoleApp.Experiment
                 clock.Stop();
                 DinicsCount.Add(clock.Elapsed.TotalMilliseconds);
 
-                g.DrawLine(dPen, startX, stableY - startYD, startX + ((X - 420) / size), stableY - Convert.ToInt32(clock.Elapsed.TotalMilliseconds * 100));
-                startYD = Convert.ToInt32(clock.Elapsed.TotalMilliseconds * 100);
+                if (flag)
+                {
+                    researchGraph.DrawGraphLine(false, startX, startYD, size, clock.Elapsed.TotalMilliseconds);
+                    startYD = Convert.ToInt32(clock.Elapsed.TotalMilliseconds * 100);
+                }
 
                 Console.WriteLine($"\nResult: Max F = {dinics.F.ToString()} ; Time spent for solving: { clock.Elapsed}");
                 _console.WriteFlowMatrixToConsole(_console.CMatrix, dinics.FlowMatrix.FlowToIntMatrix());
@@ -218,45 +220,45 @@ namespace ConsoleApp.Experiment
 
                 Console.WriteLine("\n\n");
 
-                var partsize = size / 5;
-                
-                if(i == 0)
+                if (flag)
                 {
-                    g.DrawString((i).ToString(), scaleFont, Brushes.Gray, startX, stableY);
-                    counter++;
-                }else if(i == counter * partsize || i == size - 1 && counter < 6)
-                {
-                    g.DrawString((i).ToString(), scaleFont, Brushes.Gray, startX + ((X - 420) / size), stableY);
-                    counter++;
-                }
+                    var partsize = size / 5;
 
-                startX += ((X - 420) / size);
+                    if (i == 0) // numbers on X
+                    {
+                        researchGraph.DrawXNumbers(i, startX);
+                        counter++;
+                    }
+                    else if (i == counter * partsize || i == size - 1 && counter < 6)
+                    {
+                        researchGraph.DrawXNumbers(i, startX + ((X - 420) / size));
+                        counter++;
+                    }
+
+                    startX += ((X - 420) / size);
+                }            
             }
-            var maxFF = FordFulkersonCount.Average();
-            var maxD = DinicsCount.Average();
-            var maxHeight = maxFF >= maxD ? maxFF : maxD;
 
-            var partHeight = Convert.ToInt32((maxHeight * 3) / 5) * 100;
-            var tmpY = stableY;
-            for(var i = 1; i <= 5; i++)
+            if (flag)
             {
-                g.DrawString((i * partHeight).ToString(), scaleFont, Brushes.Gray, 50, tmpY - partHeight);
-                tmpY -= partHeight;
+                researchGraph.DrawYNumbers(FordFulkersonCount, DinicsCount);
+                researchGraph.DrawAxes("(task number)", "(msec)");
+                researchGraph.DrawLegend(size, _console);
+
+                researchGraph.SaveJPG(1);
             }
-            g.DrawLine(scalePen, stableX, stableY, X - 120, stableY);
-            g.DrawLine(scalePen, stableX, stableY, stableX, stableY - Convert.ToInt32(maxHeight * 300));
-
-            g.DrawString("(task number)", scaleFont, Brushes.Gray, X - 550, stableY + 60);
-            g.DrawString("(msec\n* 100)", scaleFont, Brushes.Gray, 1, stableY - Convert.ToInt32(maxHeight * 300));
-
-            g.DrawString($"Ford-Fulkerson - Red, Dinics - Blue, N = {_console.N}, Research size = {size}", 
-                font, Brushes.Black, 50, Y - 180);
-            bmp.Save($"Research_1_{DateTime.Now.Day}{DateTime.Now.Month}{DateTime.Now.Year}_{DateTime.Now.Hour}{DateTime.Now.Minute}{DateTime.Now.Second}.jpg");
         }
 
         public void ResearchByTimePerSize(StreamWriter fileWriter)
         {
             List<Average> time = new List<Average>();
+
+            ResearchGraph researchGraph = new ResearchGraph();
+            var startX = stableX;
+            var startYD = 0;
+            var startYF = 0;
+            var counter = 0;
+
             string result;
 
             bool file = false;
@@ -294,9 +296,30 @@ namespace ConsoleApp.Experiment
                 {
                     fileWriter.WriteLine($"\t\t___MATRIX SIZE: {i}___\n");
                 }
-                ResearchForSize(fileWriter, researchSize);
+                ResearchForSize(fileWriter, researchSize, false);
                 time.Add(new Average(i, Compare(null)));
+
+                researchGraph.DrawGraphLine(true, startX, startYF, ((finishSize - startSize) / step) + 1, time[(i - startSize)/step].Time[0] / 10);
+                startYF = Convert.ToInt32(time[(i - startSize)/step].Time[0] * 10);
+
+                researchGraph.DrawGraphLine(false, startX, startYD, ((finishSize - startSize) / step) + 1, time[(i - startSize)/step].Time[1] / 10);
+                startYD = Convert.ToInt32(time[(i - startSize)/step].Time[1] * 10);
+
+                var divider = ((finishSize - startSize) / step) >= 5 ? 5 : ((finishSize - startSize) / step);
+                var partsize = ((finishSize - startSize) / step) / divider;
+                if (i == (startSize + (counter * partsize * step)) || i == finishSize && counter < 6)
+                {
+                    researchGraph.DrawXNumbers(i, startX + ((X - 420) / (((finishSize - startSize) / step) + 1)));
+                    counter++;
+                }
+
+                startX += ((X - 420) / (((finishSize - startSize) / step) + 1));
             }
+            researchGraph.DrawYAverages(time);
+            researchGraph.DrawAxes("size", "msec");
+            researchGraph.DrawLegend2(startSize, finishSize, step, researchSize);
+
+            researchGraph.SaveJPG(2);
 
             result = "RESULTS FOR TIME PER SIZE:\n";
             for (int i = 0; i < time.Count; i++)
